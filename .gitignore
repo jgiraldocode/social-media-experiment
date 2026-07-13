@@ -1,0 +1,31 @@
+# ============================================================
+#  SEGURIDAD: por defecto NO se sube NADA.
+#  Solo se permite explícitamente el contenido publicable
+#  (carpetas "Contenido" con imágenes y captions).
+#  Esto mantiene FUERA del repo: credenciales, tokens,
+#  correos, frases de recuperación, el Excel y los scripts.
+# ============================================================
+
+# 1) Ignorar todo en la raíz
+/*
+
+# 2) Permitir el propio .gitignore y descender a Cuentas
+!/.gitignore
+!/Cuentas/
+
+# 3) Dentro de Cuentas: ignorar archivos sueltos (EMAILS.md, LEEME.md, etc.)
+#    pero permitir entrar a la carpeta de cada cuenta
+/Cuentas/*
+!/Cuentas/*/
+
+# 4) Dentro de cada cuenta: ignorar todo (incluye CREDENCIALES.md)
+#    y permitir SOLO la carpeta Contenido
+/Cuentas/*/*
+!/Cuentas/*/Contenido/
+
+# Nunca subir estos, por si acaso (defensa en profundidad)
+**/CREDENCIALES.md
+**/EMAILS.md
+**/ig_config.json
+**/*.xlsx
+**/.DS_Store
